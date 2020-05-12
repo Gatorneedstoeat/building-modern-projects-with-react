@@ -12,4 +12,4 @@ export default connect(...)(TodoList);   --> Our Application
 
 * Keep Redux actions and async operations our of your reducers.  Reducers are specificly ment to take the current state of the redux store and combine it with an action to get the updated state.
 
-* Think carefully about connecting components.
+* Think carefully about connecting components.  If you would like to reuse the componet else-where in the app use a parent component that is connected to the store and passed the correct data to each child.
