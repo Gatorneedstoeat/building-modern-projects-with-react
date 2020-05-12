@@ -22,4 +22,8 @@ const rootReducer = combineReducers(reducers);
 // this wraps the rootReducer in a persitant container
 const persistedReducer = persistReducer(persistConfig,rootReducer);
 
-export const configureStore = () => createStore(persistedReducer);
+export const configureStore = () => createStore(
+    persistedReducer,
+    // connects app to react dev tools in chrome
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    );
