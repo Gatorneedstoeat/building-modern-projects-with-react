@@ -15,21 +15,21 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
                 placeholder="Type your new todo here"
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)} />
-            <button 
-            onClick={()=>{
-                // check for a duplicate todo
-                //.some returns boolean value based on the value checked in the function
-                const isDuplicateText =
-                todos.some(todo => todo.text === inputValue)
-                if(!isDuplicateText){
-                //call dispatch function
-                onCreatePressed(inputValue);
-                // reset 
-                setInputValue('');
-                }
-                
-            }}
-            className="new-todo-button">Create Todo</button>
+            <button
+                onClick={() => {
+                    // check for a duplicate todo
+                    //.some returns boolean value based on the value checked in the function
+                    const isDuplicateText =
+                        todos.some(todo => todo.text === inputValue)
+                    if (!isDuplicateText) {
+                        //call dispatch function
+                        onCreatePressed(inputValue);
+                        // reset 
+                        setInputValue('');
+                    }
+
+                }}
+                className="new-todo-button">Create Todo</button>
         </div>
     );
 };
