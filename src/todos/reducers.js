@@ -1,4 +1,4 @@
-import { CREATE_TODO, REMOVE_TODO } from './actions';
+import { CREATE_TODO, REMOVE_TODO, MARK_TODO_AS_COMPLETED } from './actions';
 // reducer is a function that manages a resource in the redux store
 // state parameter is the current state the resource is managing set the default value to [] in the function parameters
 // action that was trigger object of type and payload propertys
@@ -19,6 +19,16 @@ export const todos = (state = [], action) => {
             const { text } = payload;
             //filter out the todo text from the payload and return
             return state.filter(todo => todo.text !== text);
+        }
+        case MARK_TODO_AS_COMPLETED:{
+            const { text } = payload;
+            return state.map(todo => {
+                // use spread operator to Keep the old state and add or overwrite the isCompleted property.
+                if(todo.text === text){
+                    return {...todo, isCompleted: true};
+                }
+                return todo;
+            });
         }
         //return the orginal state as is 
         //important to return the unchanged state if the reducer doesn't return anything
