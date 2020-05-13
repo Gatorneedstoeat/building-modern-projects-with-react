@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
@@ -8,10 +8,10 @@ import './TodoList.css';
 
 // default array prevents the app from showing an error when todos is empty
 const TodoList = ({ todos = [], onRemovedPressed, onCompletedPressed, isLoading, startLoadingTodos }) => {
-    
+
     useEffect(() => {
         startLoadingTodos();
-    },[]);
+    }, []);
 
     const loadingMessage = <div>Loading... Todos</div>;
     const content = (
