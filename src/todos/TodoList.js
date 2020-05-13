@@ -1,28 +1,41 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
+import { loadTodos } from './thunks';
 import { removeTodo, markTodoAsCompleted } from './actions';
 import './TodoList.css';
 
 // default array prevents the app from showing an error when todos is empty
-const TodoList = ({ todos = [], onRemovedPressed, onCompletedPressed }) => (
-    <div className="list-wrapper">
-        <NewTodoForm />
-        {todos.map(todo =>
-            <TodoListItem
-                onCompletedPressed={onCompletedPressed}
-                onRemovedPressed={onRemovedPressed}
-                todo={todo} />
-        )}
-    </div>
-);
+const TodoList = ({ todos = [], onRemovedPressed, onCompletedPressed, isLoading, startLoadingTodos }) => {
+    
+    useEffect(() => {
+        startLoadingTodos();
+    },[]);
+
+    const loadingMessage = <div>Loading... Todos</div>;
+    const content = (
+        <div className="list-wrapper">
+            <NewTodoForm />
+            {todos.map(todo =>
+                <TodoListItem
+                    onCompletedPressed={onCompletedPressed}
+                    onRemovedPressed={onRemovedPressed}
+                    todo={todo} />
+            )}
+        </div>
+    );
+
+    return isLoading ? loadingMessage : content;
+};
 
 const mapStateToProps = state => ({
+    isLoading: state.isLoading,
     todos: state.todos
 });
 
 const mapDispatchToProps = dispatch => ({
+    startLoadingTodos: () => dispatch(loadTodos()),
     onRemovedPressed: text => dispatch(removeTodo(text)),
     onCompletedPressed: text => dispatch(markTodoAsCompleted(text)),
 });
