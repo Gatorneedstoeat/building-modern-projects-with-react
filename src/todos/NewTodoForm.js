@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createTodo } from './actions';
+import { addTodoRequest } from './thunks';
 import './NewTodoForm.css';
 
 // this form will automaticly recieve the todo's from the state passed as a todos prop
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 // dispatch is a function that allows the components to trigger redux actions that the store will respond to
 // trigger a redux action when someone clicks the create todo button
 const mapDispatchToProps = dispatch => ({
-    onCreatePressed: text => dispatch(createTodo(text)),
+    onCreatePressed: text => dispatch(addTodoRequest(text)),
 });
 // connect is a higher order function from react-redux, connect()() returns a connected version of the component
 // pass the above functions
