@@ -1,4 +1,4 @@
-import { loadTodosInProgress, loadTodosFailure, loadTodosSuccess, createTodo, removeTodo } from './actions';
+import { loadTodosInProgress, loadTodosFailure, loadTodosSuccess, createTodo, removeTodo, markTodoAsCompleted } from './actions';
 // thunk is a function that returns another function which contains the actual logic we want it to perform on trigger
 
 // this thunk the function that is returned gets two arguments (dispatch, getState) 
@@ -53,6 +53,17 @@ export const removeTodoRequest = id => async dispatch => {
     }
 }
 
+export const setCompletedRequest = id => async dispatch =>{
+    try{
+        const response = await fetch(`http://localhost:8080/todos/${id}/completed`, {
+            method:'post'
+        });
+        const completedTodo = await response.json();
+        dispatch(markTodoAsCompleted(completedTodo));
+    }catch(e){
+        dispatch(displayAlert(e));
+    }
+}
 export const displayAlert = text => {
     alert(`${text}`);
 };

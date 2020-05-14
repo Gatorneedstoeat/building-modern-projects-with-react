@@ -43,10 +43,10 @@ export const todos = (state = [], action) => {
             return state.filter(todo => todo.id !== todoToRemove.id);
         }
         case MARK_TODO_AS_COMPLETED: {
-            const { text } = payload;
+            const { todo: todoCompleted } = payload;
             return state.map(todo => {
                 // use spread operator to Keep the old state and add or overwrite the isCompleted property.
-                if (todo.text === text) {
+                if (todo.id === todoCompleted.id) {
                     return { ...todo, isCompleted: true };
                 }
                 return todo;
