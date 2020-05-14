@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
-import { loadTodos } from './thunks';
-import { removeTodo, markTodoAsCompleted } from './actions';
+import { loadTodos, removeTodoRequest } from './thunks';
+import { markTodoAsCompleted } from './actions';
 import './TodoList.css';
 
 // default array prevents the app from showing an error when todos is empty
@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     startLoadingTodos: () => dispatch(loadTodos()),
-    onRemovedPressed: text => dispatch(removeTodo(text)),
+    onRemovedPressed: id => dispatch(removeTodoRequest(id)),
     onCompletedPressed: text => dispatch(markTodoAsCompleted(text)),
 });
 // you dont have to use both functions you can use one or the other is needed
