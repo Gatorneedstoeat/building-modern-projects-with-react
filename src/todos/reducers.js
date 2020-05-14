@@ -56,6 +56,12 @@ export const todos = (state = [], action) => {
                 return todo;
             });
         }
+        case LOAD_TODOS_SUCCESS:{
+            const { todos } = payload;
+            return todos;
+        }
+        case LOAD_TODOS_IN_PROGRESS:
+        case LOAD_TODOS_FAILURE:
         //return the orginal state as is 
         //important to return the unchanged state if the reducer doesn't return anything
         default:
