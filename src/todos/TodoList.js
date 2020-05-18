@@ -1,14 +1,21 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
-import { getTodos, getTodosLoading, getCompletedTodos, getIncompleteTodos} from './selectors';
+import { getTodos, getTodosLoading, getCompletedTodos, getIncompleteTodos } from './selectors';
 import { loadTodos, removeTodoRequest, setCompletedRequest } from './thunks';
 // import { markTodoAsCompleted } from './actions';
 import './TodoList.css';
 
+const BigRedText = styled.div`
+font-size:48px;
+color:#FF0000;
+`;
+
+
 // default array prevents the app from showing an error when todos is empty
-const TodoList = ({ completedTodos,incompleteTodos, onRemovedPressed, onCompletedPressed, isLoading, startLoadingTodos }) => {
+const TodoList = ({ completedTodos, incompleteTodos, onRemovedPressed, onCompletedPressed, isLoading, startLoadingTodos }) => {
 
     useEffect(() => {
         startLoadingTodos();
@@ -17,6 +24,7 @@ const TodoList = ({ completedTodos,incompleteTodos, onRemovedPressed, onComplete
     const loadingMessage = <div>Loading... Todos</div>;
     const content = (
         <div className="list-wrapper">
+            <BigRedText>I'm a Styled-Component</BigRedText>
             <NewTodoForm />
             <h3>Incomplete:</h3>
             {incompleteTodos.map(todo =>
