@@ -6,11 +6,10 @@ import TodoListItem from './TodoListItem';
 import { getTodos, getTodosLoading, getCompletedTodos, getIncompleteTodos } from './selectors';
 import { loadTodos, removeTodoRequest, setCompletedRequest } from './thunks';
 // import { markTodoAsCompleted } from './actions';
-import './TodoList.css';
 
-const BigRedText = styled.div`
-font-size:48px;
-color:#FF0000;
+const ListWrapper = styled.div`
+max-width: 700px;
+margin: auto;
 `;
 
 
@@ -23,8 +22,7 @@ const TodoList = ({ completedTodos, incompleteTodos, onRemovedPressed, onComplet
 
     const loadingMessage = <div>Loading... Todos</div>;
     const content = (
-        <div className="list-wrapper">
-            <BigRedText>I'm a Styled-Component</BigRedText>
+        <ListWrapper>
             <NewTodoForm />
             <h3>Incomplete:</h3>
             {incompleteTodos.map(todo =>
@@ -42,7 +40,7 @@ const TodoList = ({ completedTodos, incompleteTodos, onRemovedPressed, onComplet
                     todo={todo}
                     key={todo.id} />
             )}
-        </div>
+        </ListWrapper>
     );
 
     return isLoading ? loadingMessage : content;
