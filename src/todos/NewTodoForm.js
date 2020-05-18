@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addTodoRequest } from './thunks';
+import { getTodos } from './selectors';
 import './NewTodoForm.css';
+
 
 // this form will automaticly recieve the todo's from the state passed as a todos prop
 const NewTodoForm = ({ todos, onCreatePressed }) => {
@@ -38,7 +40,7 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
 // mapStateToProps takes state object and returns another object containing pieces of the state the componet needs access to
 // this form will automaticly recieve the todo's from the state passed as a todos prop
 const mapStateToProps = state => ({
-    todos: state.todos,
+    todos: getTodos(state),
 });
 
 // this function returns props and passed to this component

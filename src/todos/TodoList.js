@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
+import { getTodos, getTodosLoading} from './selectors';
 import { loadTodos, removeTodoRequest, setCompletedRequest } from './thunks';
 // import { markTodoAsCompleted } from './actions';
 import './TodoList.css';
@@ -21,17 +22,18 @@ const TodoList = ({ todos = [], onRemovedPressed, onCompletedPressed, isLoading,
                 <TodoListItem
                     onCompletedPressed={onCompletedPressed}
                     onRemovedPressed={onRemovedPressed}
-                    todo={todo} />
+                    todo={todo}
+                    key={todo.id} />
             )}
         </div>
     );
 
     return isLoading ? loadingMessage : content;
 };
-
+//creating selectors for this
 const mapStateToProps = state => ({
-    isLoading: state.isLoading,
-    todos: state.todos
+    isLoading: getTodosLoading(state),
+    todos: getTodos(state)
 });
 
 const mapDispatchToProps = dispatch => ({

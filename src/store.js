@@ -4,12 +4,11 @@ import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
-import { todos, isLoading } from './todos/reducers';
+import { todos } from './todos/reducers';
 
 // reducer
 const reducers = {
     todos,
-    isLoading
 };
 // object that tells redux-persit how to save and where to store app data
 // storage property defaults to local storage from import
